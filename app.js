@@ -5,10 +5,11 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-//mongoose configuration
-//HARDCODED ----------| |----------------
-// mongoose.connect('mongodb://localhost/angular2-meanApp');
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.Promise = global.Promise;
+
+mongoose.connect('mongodb://localhost/mean-app')
+    .then(() => console.log('connection successful'))
+    .catch((err) => console.error(err));
 
 const app = express();
 
